@@ -1,103 +1,119 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">xx县智慧工地监管系统</div>
-    <div class="dashboard-subtitle">日期: {{getCurrentTime()}}</div>
-    <div class="dashboard-subtitle">所在城市: {{weather.city}}  今日天气:{{weather.wea}}</div>
-  <!--以下为Dashboard界面：label布局为大布局，container布局为小布局-->
-  <!--中间三个模块为一组label布局-->
-  <el-row>
-    <!--      工地情况统计组件-->
-    <el-col :span="8">
-      <div class="grid-content bg-purple">
-        <el-container>
-          <el-header height="100px">工地情况统计</el-header>
-          <el-main height="200px">按处置类别、状态统计</el-main>
-          <el-footer height="260px" class="banner-box-time">按时间统计</el-footer>
-        </el-container>
-      </div>
-    </el-col>
-    <!--      GIS地图组件-->
-    <el-col :span="8">
-      <div class="grid-content bg-purple">
-          <el-container>
-            <el-header height="460px">
+    <el-container>
+      <el-header height="130px">
+        <div class="title-text">智慧工地监管系统</div>
+        <div class="weather">
+          <div class="dashboard-subtitle">日期: {{getCurrentTime()}}</div>
+          <div class="dashboard-subtitle">所在城市: {{weather.city}}  今日天气:{{weather.wea}}</div>
+        </div>
+      </el-header>
+      <el-main>
+        <!-- 中间部分的代码，分为左中右-->
+        <div class="center">
+          <div class="center-left">
+            <p>工地情况统计:</p>
+            <el-radio-group v-model="radio">
+              <el-radio :label="1">处置类别</el-radio>
+              <el-radio :label="2">状态</el-radio>
+              <el-radio :label="3">时间</el-radio>
+            </el-radio-group>
+            <!-- 不选择时间的时候这个能用-->
+            <!-- TODO 选择时间的时候下拉菜单隐藏调，不选择时间的时候时间框隐藏调-->
+            <el-select v-model="value" v-show="radio == 1 || 2" clearable placeholder="请选择" >
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :value="item.value">
+              </el-option>
+            </el-select>
+            <!-- 时间选择-->
+            <div v-if="radio == 3">
+              <div class="block">
+                <span class="demonstration">开始时间</span>
+                <el-date-picker
+                  v-model="startTime"
+                  type="date"
+                  placeholder="选择日期">
+                </el-date-picker>
+              </div>
+              <div class="block">
+                <span class="demonstration">结束时间</span>
+                <el-date-picker
+                  v-model="endTime"
+                  type="date"
+                  placeholder="选择日期">
+                </el-date-picker>
+              </div>
+            </div>
+
+            <div class="qingkuang">
+              这里写查询回来的情况
+            </div>
+
+          </div>
+          <div class="center-middle">
+            <div class="center-GIS">
               <p>GIS地图</p>
-              <p>xx县工地视频输入信号</p>
-            </el-header>
-            <table border="1">
-              <tr>
-                <td>图层切换</td>
-                <td>
-                  <el-select v-model="value" filterable placeholder="请选择">
-                    <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value">
-                    </el-option>
-                  </el-select>
-                </td>
-              </tr>
-              <tr>
-                <td><el-button>卫星图</el-button></td>
-                <td><el-button>路网图</el-button></td>
-              </tr>
-            </table>
-          </el-container>
-      </div>
-    </el-col>
-    <!--      查找工地组件-->
-    <el-col :span="8">
-      <div class="grid-content bg-purple">
-        <el-container>
-          <el-header height="100px">
-            <el-row :gutter="20">
-              <el-col :span="10">
-                <div class="grid-content bg-purple" font-size="4px">
-                  搜索条件(模糊查询)
-                </div>
-              </el-col>
-              <el-col :span="14">
-                <div class="grid-content bg-purple">
-                  <el-input placeholder="请输入内容" v-model="input" clearable></el-input>
-                </div>
-              </el-col>
-            </el-row>
-          </el-header>
-          <el-footer height="460px">
-            <div>查找到工地后，显示工地相关信息，例如位置，在建项目等</div>
-          </el-footer>
-        </el-container>
-      </div>
-    </el-col>
-  </el-row>
-  <!--底部两个模块为一组label布局-->
-  <el-row>
-    <el-col :span="24">
-      <div class="grid-content bg-purple-dark">
-      <el-row :gutter="1">
-        <!--          消息提示组件-->
-        <el-col :span="12">
-          <div class="grid-content bg-purple">
-            消息提示
-            <ol>
-              <li>XXXX</li>
-              <li>XXXX</li>
-              <li>XXXX</li>
-              <li>XXXX</li>
-            </ol>
+              <p>xx线工地视频信号接入</p>
+            </div>
+            <div class="tucnegqiehuan">
+              <p>图层切换</p>
+              <div>
+                <el-radio v-model="ditu" label="1">卫星图</el-radio>
+                <el-radio v-model="ditu" label="2">路网图</el-radio>
+              </div>
+            </div>
           </div>
-        </el-col>
-        <!--          工地指标情况趋势组件-->
-        <el-col :span="12">
-          <div class="grid-content bg-purple">
+          <div class="center-right">
+            <p>请输入工地名称:</p>
+            <div class="gongdisousuo">
+              <el-input
+                placeholder="请输入内容"
+                v-model="input4">
+                <i slot="prefix" class="el-input__icon el-icon-search"></i>
+              </el-input>
+              <el-button icon="el-icon-search" type="primary">搜索</el-button>
+            </div>
+            <div class="site-info">这里展示查询到的工地信息,这里要看后端返回的数据，以及数据库存储了哪些信息</div>
+          </div>
+        </div>
+
+        <!-- 底部的代码，分为左右-->
+        <div class="bottom">
+          <!-- 左边是消息通知-->
+          <div class="bottom-left">
+            <p>消息通知</p>
+            <el-table
+              :data="tableData"
+              stripe
+              style="width: 100%">
+              <el-table-column
+                prop="date"
+                label="日期"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                prop="name"
+                label="标题"
+                width="180">
+              </el-table-column>
+              <el-table-column
+                label="查看详情">
+                <el-link type="primary">查看详情</el-link>
+              </el-table-column>
+            </el-table>
+
+          </div>
+          <!-- 右边是指标趋势-->
+          <!-- TODO 1期先使用多简单的文字，2期考虑使用echart折线图来可视化数据-->
+          <div class="bottom-right">
             <p>工地指标情况趋势</p>
-            <div class="PMtext">PM2.5,PM10</div>
+            1期先使用多简单的文字，2期考虑使用echart折线图来可视化数据
           </div>
-        </el-col>
-      </el-row>
-    </div></el-col>
-  </el-row>
+        </div>
+      </el-main>
+    </el-container>
 
   </div>
 </template>
@@ -110,25 +126,49 @@ export default {
   data(){
     return{
       weather:'',
-      options: [{
+      options: [
+        {
         value: '选项1',
-        label: '黄金糕'
+        label: '类别1'
       }, {
         value: '选项2',
-        label: '双皮奶'
+        label: '类别2'
       }, {
         value: '选项3',
-        label: '蚵仔煎'
+        label: '类别3'
       }, {
         value: '选项4',
-        label: '龙须面'
-      }, {
-        value: '选项5',
-        label: '北京烤鸭'
+        label: '类别4'
       }],
       value: '',
-      input:'',
+      isvisable: true,
+      radio: 1,
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+        }
+      },
+      startTime: '',
+      endTime: '',
+      ditu: '1',
+      input4: '',
+      tableData: [{
+        date: '2016-05-02',
+        name: '注意安全',
+      }, {
+        date: '2016-05-04',
+        name: '天气变热',
+      }, {
+        date: '2016-05-01',
+        name: '工具存取',
+      }, {
+        date: '2016-05-03',
+        name: '人员调动安排',
+      }],
+
     }
+
+
   },
   //mounted来异步执行weather
   mounted() {
@@ -137,7 +177,9 @@ export default {
   computed: {
     ...mapGetters([
       'name'
-    ])
+    ]),
+
+
   },
   methods: {
     getCurrentTime() {
@@ -173,9 +215,7 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard {
-  &-container {
-    margin: 30px;
-  }
+
   &-text {
     font-size: 30px;
     line-height: 46px;
@@ -188,93 +228,100 @@ export default {
   }
 }
 
-.app-main {
-  /*50 = navbar  */
-  min-height: calc(100vh - 50px);
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-.fixed-header+.app-main {
-  padding-top: 50px;
-}
-.maintext {
-  height: 300px;
-  font-size: 1px;
-  -webkit-transform-origin-x:0;
-  -webkit-transform:scale(0.90);
-}
-.PMtext{
-  line-height: 100px;
-  text-align: center;
-}
-.banner-box-time{
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-// fix css style bug in open el-dialog
-.el-popup-parent--hidden {
-  .fixed-header {
-    padding-right: 15px;
-  }
-}
-
-//label样式
-.el-row {
-  margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-.el-col {
-  border-radius: 4px;
-}
-.bg-purple-dark {
-  background: #99a9bf;
-}
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-  font-size: 1px;
-  -webkit-transform-origin-x:0;
-  -webkit-transform:scale(0.90);
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-}
-//container布局样式
-.el-header {
+.el-header{
   background-color: #B3C0D1;
   color: #333;
   text-align: center;
   line-height: 60px;
+  width: 100%;
 }
-.el-footer {
-  background-color: #F2F6FC;
-  color: #333;
-  align-items: center;
-  line-height: 60px;
+.title-text {
+  color: white;
+  font-weight: bold;
+  width: 500px;
+  margin: auto;
+  background-color: rgb(48,65,86);
+  border-radius: 0 0 10px 10px;
 }
+
 .el-main {
+  background-color: white;
+  color: #333;
+  text-align: center;
+  line-height: 20px !important;
+  text-align: left;
+}
+.center{
+  display: flex;
+  justify-content: space-between;
+  height: 400px;
+  line-height: 15px;
+
+
+}
+.center .center-left{
+  width: 24%;
+  padding-left: 10px;
+  //border: 2px solid black;
   background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
+  border-radius: 10px;
 }
-.el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
+
+.center .center-left .qingkuang{
+  height: 70%;
+  padding-top: 5px;
 }
+
+.center .center-middle{
+  width: 50%;
+  padding-left: 10px;
+  position: relative;
+  background-color: #E9EEF3;
+  border-radius: 10px;
+}
+
+.center .center-middle .tucnegqiehuan {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-color: rgb(179,192,209);
+}
+.center .center-right{
+  width: 24%;
+  padding-left: 10px;
+  background-color: #E9EEF3;
+  border-radius: 10px;
+}
+
+.center .center-right .gongdisousuo{
+  display: flex;
+  justify-content: center;
+}
+.center .center-right .site-info{
+  margin-top: 10px;
+}
+
+.bottom{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom .bottom-left{
+  width: 48%;
+  //border: 3px solid lavenderblush;
+  padding-left: 10px;
+  background-color: #E9EEF3;
+  border-radius: 10px;
+}
+
+.bottom .bottom-right{
+  width: 48%;
+  padding-left: 10px;
+  background-color: #E9EEF3;
+  border-radius: 10px;
+}
+
+
 
 </style>
