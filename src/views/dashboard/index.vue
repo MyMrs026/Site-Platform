@@ -2,7 +2,7 @@
   <div class="dashboard-container">
     <el-container>
       <el-header height="130px">
-        <div class="title-text">智慧工地监管系统</div>
+        <div class="title-text">智慧工地视频监管平台</div>
         <div class="weather">
           <div class="dashboard-subtitle">日期: {{getCurrentTime()}}</div>
           <div class="dashboard-subtitle">所在城市: {{weather.city}}  今日天气:{{weather.wea}}</div>
