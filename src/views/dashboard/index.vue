@@ -55,7 +55,9 @@
           <div class="center-middle">
             <div class="center-GIS">
               <p>GIS地图</p>
-              <p>xx线工地视频信号接入</p>
+              <p>工地视频信号接入</p>
+              <my-map></my-map>
+<!--              <BaiduMap></BaiduMap>-->
             </div>
             <div class="tucnegqiehuan">
               <p>图层切换</p>
@@ -120,6 +122,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import myMap from "@/components/map/index"
+// import BaiduMap from '@/components/BaiduMap.vue'
 
 export default {
   name: 'Dashboard',
@@ -180,6 +184,10 @@ export default {
     ]),
 
 
+  },
+  components: {
+    myMap,
+    // BaiduMap
   },
   methods: {
     getCurrentTime() {
