@@ -56,7 +56,9 @@
             <div class="center-GIS">
               <p>GIS地图</p>
               <p>工地视频信号接入</p>
-              <my-map></my-map>
+              <div class="gaodeditu">
+                <my-map></my-map>
+              </div>
 <!--              <BaiduMap></BaiduMap>-->
             </div>
             <div class="tucnegqiehuan">
@@ -237,7 +239,7 @@ export default {
 }
 
 .el-header{
-  background-color: #B3C0D1;
+  background-color: #F2F6FC;
   color: #333;
   text-align: center;
   line-height: 60px;
@@ -248,7 +250,7 @@ export default {
   font-weight: bold;
   width: 500px;
   margin: auto;
-  background-color: rgb(48,65,86);
+  background-color: #2f3746;
   border-radius: 0 0 10px 10px;
 }
 
@@ -271,7 +273,7 @@ export default {
   width: 24%;
   padding-left: 10px;
   //border: 2px solid black;
-  background-color: #E9EEF3;
+  background-color: #fafafa;
   border-radius: 10px;
 }
 
@@ -284,7 +286,7 @@ export default {
   width: 50%;
   padding-left: 10px;
   position: relative;
-  background-color: #E9EEF3;
+  background-color: #F2F6FC;
   border-radius: 10px;
 }
 
@@ -292,12 +294,17 @@ export default {
   position: absolute;
   bottom: 0px;
   right: 0px;
-  background-color: rgb(179,192,209);
+  background-color: #FFFFFF;
 }
+
+.center .center-middle.gaodeditu{
+  width: 100%
+}
+
 .center .center-right{
   width: 24%;
   padding-left: 10px;
-  background-color: #E9EEF3;
+  background-color: #fafafa;
   border-radius: 10px;
 }
 
@@ -319,14 +326,14 @@ export default {
   width: 48%;
   //border: 3px solid lavenderblush;
   padding-left: 10px;
-  background-color: #E9EEF3;
+  background-color: #F9F9F9;
   border-radius: 10px;
 }
 
 .bottom .bottom-right{
   width: 48%;
   padding-left: 10px;
-  background-color: #E9EEF3;
+  background-color: #fafafa;
   border-radius: 10px;
 }
 
