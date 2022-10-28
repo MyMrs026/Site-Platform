@@ -26,7 +26,7 @@ export default {
       center: [112.549248, 37.857014],
       zoom: 12,
       position: [112.549248, 37.857014],
-      // icon: require('../../../public/favicon.png'),//自定义地图标记点图片
+      icon: require('../../../public/favicon.png'),//自定义地图标记点图片
       events: {
         init(o){
           console.log(o.getCenter());
@@ -45,10 +45,10 @@ export default {
       },
       markers: [
         {
-          position: [121.5273285, 31.21515044]
+          position: [112.549248, 112.549248]
         },
         {
-          position: [121.5174286, 31.21515044]
+          position: [112.549248, 112.549248]
         }
       ],
       //使用其他组件
