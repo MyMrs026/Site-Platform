@@ -20,6 +20,7 @@ export default {
       );
       map.setCurrentCity("北京"); // 设置地图显示的城市 此项是必须设置的
       map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
+      map.autosize(true);
     },
     initMapHeight() {
       var main = document.getElementById("map");
@@ -46,8 +47,8 @@ export default {
 
 <style>
 #allmap {
-  height: 43%;
-  overflow: hidden;
+  height: 35%;
+  overflow: auto;
 }
 </style>
 

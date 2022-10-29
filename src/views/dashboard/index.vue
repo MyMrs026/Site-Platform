@@ -59,7 +59,7 @@
 <!--              <my-map></my-map>-->
               <BaiduMap></BaiduMap>
             </div>
-            <div class="tucnegqiehuan">
+            <div class="tucengqiehuan">
 <!--              <p>图层切换</p>-->
 <!--              <div>-->
 <!--                <el-radio v-model="ditu" label="1">卫星图</el-radio>-->
@@ -288,7 +288,7 @@ export default {
   border-radius: 10px;
 }
 
-.center .center-middle .tucnegqiehuan {
+.center .center-middle .tucengqiehuan {
   position: absolute;
   bottom: 0px;
   right: 0px;
