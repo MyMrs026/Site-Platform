@@ -47,8 +47,8 @@ export default {
 
 <style>
 #allmap {
-  height: 43%;
-  overflow: hidden;
+  height: 35%;
+  overflow: auto;
 }
 </style>
 
