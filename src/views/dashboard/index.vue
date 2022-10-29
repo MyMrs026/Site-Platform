@@ -56,17 +56,15 @@
             <div class="center-GIS">
               <p>GIS地图</p>
               <p>工地视频信号接入</p>
-              <div class="gaodeditu">
-                <my-map></my-map>
-              </div>
-<!--              <BaiduMap></BaiduMap>-->
+<!--              <my-map></my-map>-->
+              <BaiduMap></BaiduMap>
             </div>
-            <div class="tucnegqiehuan">
-              <p>图层切换</p>
-              <div>
-                <el-radio v-model="ditu" label="1">卫星图</el-radio>
-                <el-radio v-model="ditu" label="2">路网图</el-radio>
-              </div>
+            <div class="tucengqiehuan">
+<!--              <p>图层切换</p>-->
+<!--              <div>-->
+<!--                <el-radio v-model="ditu" label="1">卫星图</el-radio>-->
+<!--                <el-radio v-model="ditu" label="2">路网图</el-radio>-->
+<!--              </div>-->
             </div>
           </div>
           <div class="center-right">
@@ -125,7 +123,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import myMap from "@/components/map/index"
-// import BaiduMap from '@/components/BaiduMap.vue'
+import BaiduMap from '@/components/baidumap/BaiduMap'
 
 export default {
   name: 'Dashboard',
@@ -189,7 +187,7 @@ export default {
   },
   components: {
     myMap,
-    // BaiduMap
+    BaiduMap
   },
   methods: {
     getCurrentTime() {
@@ -239,7 +237,7 @@ export default {
 }
 
 .el-header{
-  background-color: #F2F6FC;
+  background-color: #B3C0D1;
   color: #333;
   text-align: center;
   line-height: 60px;
@@ -250,7 +248,7 @@ export default {
   font-weight: bold;
   width: 500px;
   margin: auto;
-  background-color: #2f3746;
+  background-color: rgb(48,65,86);
   border-radius: 0 0 10px 10px;
 }
 
@@ -273,7 +271,7 @@ export default {
   width: 24%;
   padding-left: 10px;
   //border: 2px solid black;
-  background-color: #fafafa;
+  background-color: #E9EEF3;
   border-radius: 10px;
 }
 
@@ -286,25 +284,20 @@ export default {
   width: 50%;
   padding-left: 10px;
   position: relative;
-  background-color: #F2F6FC;
+  background-color: #E9EEF3;
   border-radius: 10px;
 }
 
-.center .center-middle .tucnegqiehuan {
+.center .center-middle .tucengqiehuan {
   position: absolute;
   bottom: 0px;
   right: 0px;
-  background-color: #FFFFFF;
+  background-color: rgb(179,192,209);
 }
-
-.center .center-middle.gaodeditu{
-  width: 100%
-}
-
 .center .center-right{
   width: 24%;
   padding-left: 10px;
-  background-color: #fafafa;
+  background-color: #E9EEF3;
   border-radius: 10px;
 }
 
@@ -326,14 +319,14 @@ export default {
   width: 48%;
   //border: 3px solid lavenderblush;
   padding-left: 10px;
-  background-color: #F9F9F9;
+  background-color: #E9EEF3;
   border-radius: 10px;
 }
 
 .bottom .bottom-right{
   width: 48%;
   padding-left: 10px;
-  background-color: #fafafa;
+  background-color: #E9EEF3;
   border-radius: 10px;
 }
 

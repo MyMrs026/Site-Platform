@@ -1,17 +1,15 @@
 <template>
-  <div class="amap-wrapper" :style="{width:'100%',height:'300px'}">
+  <div class="amap-wrapper">
     <el-amap
       ref="map"
       :vid="'amapDemo'"
       :center="center"
-      expand-zoom-range="true"
       :zoom="zoom"
       :plugin="plugin"
-      :pitch="66"
       :events="events"
-      class="amap-demo">
-<!--      style="height: 300px;width: 580px"-->
-
+      class="amap-demo"
+      style="height: 300px;width: 620px"
+    >
       <el-amap-marker v-for="(u,i) in markers" :position="u.position" :key="i">
       </el-amap-marker>
       <el-amap-marker :position="[112.549248, 37.857014]" :icon="icon">
