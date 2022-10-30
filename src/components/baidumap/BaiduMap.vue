@@ -1,6 +1,6 @@
 <template>
-  <div id="map" :style="{height:mapHeight}">
-    <div id="allmap" ref="allmap"></div>
+  <div id="map" >
+    <div id="allmap" ref="allmap" :style="{height:mapHeight,autosize:true}"></div>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
       );
       map.setCurrentCity("北京"); // 设置地图显示的城市 此项是必须设置的
       map.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
-      map.autosize(true);
+      //autosize(map);
     },
     initMapHeight() {
       var main = document.getElementById("map");
@@ -29,17 +29,17 @@ export default {
   },
   data() {
     return {
-      mapHeight: 800 + "px",
+      mapHeight: 320 + "px",
     };
   },
   mounted() {
     this.initMapHeight();
     this.map();
-    window.onresize = () => {
-      return (() => {
-        this.mapHeight = window.innerHeight + 'px';
-      })();
-    };
+    // window.onresize = () => {
+    //   return (() => {
+    //     this.mapHeight = window.innerHeight + 'px';
+    //   })();
+    // };
   },
 };
 </script>
