@@ -28,7 +28,7 @@ export default {
         autoplay:true,
         controls:true
       }).src({
-        src: that.video.url,
+        src: 'rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101',
         type: 'application/x-mpegURL',
       })
     },

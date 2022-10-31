@@ -101,8 +101,10 @@
                 width="180">
               </el-table-column>
               <el-table-column
-                label="查看详情">
+                label="操作">
                 <el-link type="primary">查看详情</el-link>
+                <span>&nbsp;|&nbsp;</span>
+                <el-link type="primary">删除</el-link>
               </el-table-column>
             </el-table>
 
