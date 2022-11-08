@@ -2,16 +2,20 @@
   <div class="cell">
 
     <div class="cell-player">
-      <div :class="cellClass(i)" v-for="i in cellCount" :key="i">
-        <playVideo :video="videoInfo[i]" v-if="cellCount != 6"></playVideo>
-        <playVideo :video="videoInfo[i]" v-if="cellCount == 6 && i != 2 && i != 3"></playVideo>
-        <template v-if="cellCount == 6 && i == 2">
-          <div class="cell-player-6-2-cell">
-            <playVideo :video="videoInfo[i]"></playVideo>
-            <playVideo :video="videoInfo[++i]"></playVideo>
-          </div>
-        </template>
+<!--      <div :class="cellClass(i)" v-for="i in cellCount" :key="i">-->
+<!--        <Video v-if="cellCount != 6"></Video>-->
+<!--        <Video v-if="cellCount == 6 && i != 2 && i != 3"></Video>-->
+<!--        <template v-if="cellCount == 6 && i == 2">-->
+<!--          <div class="cell-player-6-2-cell">-->
+<!--            <Video></Video>-->
+<!--            <Video></Video>-->
+<!--          </div>-->
+<!--        </template>-->
+<!--      </div>-->
+      <div :class="cellClass(i)" v-for = "i in cellCount" :key="i">
+        <Video></Video>
       </div>
+
     </div>
     <div class="cell-tool">
       <div class="bk-button-group">
@@ -27,28 +31,30 @@
 
 <script>
 import playVideo from '@/views/test/playVideo'
+import Video from '@/components/Video/index'
 
 export default {
   name: 'index',
   components: {
-    playVideo
+    playVideo,
+    Video
   },
   data() {
     return {
-      videoInfo: [
-        {url: "", index: 0, name: "测试1"},
-        {url: "http://localhost:85/live/test.flv", index: 1, name: "测试1"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 2, name: "测试2"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 3, name: "测试3"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 10, name: "测试4"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 4, name: "测试5"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 5, name: "测试6"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 6, name: "测试7"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 7, name: "测试8"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 8, name: "测试9"},
-
-
-      ],
+      // videoInfo: [
+      //   {url: "", index: 0, name: "测试1"},
+      //   {url: "http://localhost:85/live/test.flv", index: 1, name: "测试1"},
+      //   {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 2, name: "测试2"},
+      //   {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 3, name: "测试3"},
+      //   {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 10, name: "测试4"},
+      //   {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 4, name: "测试5"},
+      //   {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 5, name: "测试6"},
+      //   {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 6, name: "测试7"},
+      //   {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 7, name: "测试8"},
+      //   {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 8, name: "测试9"},
+      //
+      //
+      // ],
       cellCount: 16
     }
   },
@@ -62,12 +68,12 @@ export default {
           case 4:
             return ['cell-player-4']
           case 6:
-            if (index == 1)
-              return ['cell-player-6-1']
-            if (index == 2)
-              return ['cell-player-6-2']
-            if (index == 3)
-              return ['cell-player-6-none']
+            // if (index == 1)
+            //   return ['cell-player-6-1']
+            // if (index == 2)
+            //   return ['cell-player-6-2']
+            // if (index == 3)
+            //   return ['cell-player-6-none']
             return ['cell-player-6']
           case 9:
             return ['cell-player-9']
@@ -91,10 +97,11 @@ export default {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  padding: 0 40px;
 }
 .cell-player-4 {
-  width: 50%;
+  /*width: 50%;*/
   height: 50% !important;
   box-sizing: border-box;
 }
@@ -104,35 +111,39 @@ export default {
   box-sizing: border-box;
 }
 
-.cell-player-6-1 {
-  width: 66.66%;
-  height: 66.66% !important;
-  box-sizing: border-box;
-}
-.cell-player-6-2 {
-  width: 33.33%;
-  height: 66.66% !important;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-.cell-player-6-none {
-  display: none;
-}
-.cell-player-6-2-cell {
-  width: 100%;
-  height: 50% !important;
-  box-sizing: border-box;
-}
+/*.cell-player-6-1 {*/
+/*  width: 66.66%;*/
+/*  height: 66.66% !important;*/
+/*  box-sizing: border-box;*/
+/*}*/
+/*.cell-player-6-2 {*/
+/*  width: 33.33%;*/
+/*  height: 66.66% !important;*/
+/*  box-sizing: border-box;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*}*/
+/*.cell-player-6-none {*/
+/*  display: none;*/
+/*}*/
+/*.cell-player-6-2-cell {*/
+/*  width: 100%;*/
+/*  height: 50% !important;*/
+/*  box-sizing: border-box;*/
+/*}*/
 .cell-player-6 {
   width: 33.33%;
   height: 33.33% !important;
   box-sizing: border-box;
+  justify-content: flex-start;
+  padding: 0 30px;
+  z-index: 2;
 }
 .cell-player-9 {
   width: 33.33%;
   height: 33.33% !important;
   box-sizing: border-box;
+  padding: 0 80px !important;
 }
 .cell-player-16 {
   width: 25%;
