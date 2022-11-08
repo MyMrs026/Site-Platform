@@ -1,10 +1,18 @@
 <template>
-  <div>施工围挡</div>
+  <div>
+    <Video></Video>
+  </div>
 </template>
 
 <script>
+import Video from '@/components/Video/index'
 export default {
-  name: 'index'
+  name: 'index',
+
+
+  components:{
+    Video
+  }
 }
 </script>
 

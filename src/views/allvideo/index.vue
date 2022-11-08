@@ -37,7 +37,7 @@ export default {
     return {
       videoInfo: [
         {url: "", index: 0, name: "测试1"},
-        {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 1, name: "测试1"},
+        {url: "http://localhost:85/live/test.flv", index: 1, name: "测试1"},
         {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 2, name: "测试2"},
         {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 3, name: "测试3"},
         {url: "rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101", index: 10, name: "测试4"},
