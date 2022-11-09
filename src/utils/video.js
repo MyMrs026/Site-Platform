@@ -17,4 +17,6 @@ var nums = new NodeMediaServer(config);
 nums.run();
 
 
-// rtsp://admin:abc123456@192.168.1.101:554/Streaming/Channels/101?transportmode=unicast101 -c copy flv rtmp://localhost/live/test
+// ffmpeg -i rtsp://admin:abc123456@192.168.1.102:554/Streaming/Channels/101?transportmode=unicast101 -c copy -f flv rtmp://localhost:1935/live/test
+
+// node ./src/utils/index.js

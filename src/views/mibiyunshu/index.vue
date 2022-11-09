@@ -22,7 +22,7 @@ export default {
 
   },
   created() {
-    this._initdata();
+    // this._initdata();
   }
 }
 </script>
