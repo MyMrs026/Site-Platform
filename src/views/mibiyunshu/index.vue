@@ -4,7 +4,26 @@
 
 <script>
 export default {
-  name: 'mibiyunshu'
+  name: 'mibiyunshu',
+  data(){
+    return {
+
+    }
+  },
+  methods: {
+    _initdata(){
+      this.$axios.get('/api/video/hello').then(res => {
+        res = res.data;
+        console.log(res)
+      })
+    }
+  },
+  mounted() {
+
+  },
+  created() {
+    // this._initdata();
+  }
 }
 </script>
 
