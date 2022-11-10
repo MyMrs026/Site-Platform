@@ -1,12 +1,11 @@
 智慧工地视频分析监控平台
 
-devlh测试
 
 ## Build Setup
 
 ```bash
 # 克隆项目
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+git clone https://gitee.com/ahao0579/Site-platform.git
 
 # 进入项目目录
 cd vue-admin-template
