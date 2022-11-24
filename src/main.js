@@ -23,6 +23,7 @@ import VueAMap from 'vue-amap'
 Vue.prototype.$axios = axios
 Vue.prototype.$video = Video
 import hls from 'videojs-contrib-hls'
+import '@/plugins/video.js'
 
 
 

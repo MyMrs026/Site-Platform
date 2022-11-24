@@ -1,23 +1,24 @@
 <template>
   <div class="test-videojs">
-    <video id="videoPlayer" class="video-js" muted></video>
+    <video id="videoPlayer" class="video-js" muted="muted"></video>
   </div>
 </template>
 
 <script>
-import Videojs from "video.js"; // 引入Videojs
+//videojs-flash必须要放在vue-video-player的后面
+import 'video.js/dist/video-js.css'
+import 'videojs-flash'
+import Videojs from 'video.js'
 export default {
-  name: 'wuliaofugai',
+  name: 'hls',
 
-  components:{
-  },
   data() {
     return {
-      nowPlayVideoUrl: "http://60.222.243.35:83/openUrl/e71YUdG/live.m3u8"
+      nowPlayVideoUrl: ""
     };
   },
   mounted() {
-    this.initVideo(this.nowPlayVideoUrl);
+    this.getUrl();
   },
   methods: {
     initVideo(nowPlayVideoUrl) {
@@ -38,7 +39,29 @@ export default {
         console.log("onPlayerReady 中的this指的是：", this); // 这里的this是指Player,是由Videojs创建出来的实例
         console.log(myPlyer === this); // 这里返回的是true
       });
-    }
+    },
+    getUrl(){
+      this.$axios.get(`/api/camera/getBallCamera`).then(
+        (res) => {
+          res = res.data.data;
+          console.log(res)
+          if (res.code == 0){
+            this.nowPlayVideoUrl = res.data.url;
+            console.log(this.nowPlayVideoUrl)
+          } else {
+            this.$message({
+              type:'error',
+              message:res.message
+            })
+          }
+        }
+      );
+      setTimeout(() =>{
+        this.initVideo(this.nowPlayVideoUrl)
+      },200)
+    },
+
+
   }
 
 
@@ -46,11 +69,5 @@ export default {
 </script>
 
 <style scoped>
-
-#videoPlayer {
-  width: 500px;
-  height: 300px;
-  margin: 50px auto;
-}
 
 </style>

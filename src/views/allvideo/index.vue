@@ -3,7 +3,7 @@
 
     <div class="cell-player">
       <div :class="cellClass(i)" v-for = "i in cellCount" :key="i">
-        <Video></Video>
+        <hls></hls>
       </div>
 
     </div>
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import Video from '@/components/Video/index'
+import hls from '@/components/hls/hls'
 
 export default {
   name: 'index',
   components: {
-    Video
+    hls
   },
   data() {
     return {
