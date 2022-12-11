@@ -13,15 +13,17 @@ export default {
   },
   data() {
     return {
-      nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000009$0/substream/2.m3u8"
+      nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000046$0/substream/2.m3u8"
     };
   },
+
   mounted() {
     // this.initVideo(this.nowPlayVideoUrl);
-    this.getUrl()
+    this.init_data()
   },
+
   methods: {
-    initVideo(nowPlayVideoUrl) {
+    initVideo() {
       // 这些options属性也可直接设置在video标签上，见 muted
       let options = {
         autoplay: true, // 设置自动播放
@@ -40,13 +42,13 @@ export default {
         console.log(myPlyer === this); // 这里返回的是true
       });
     },
-    getUrl(){
+    init_data(){
       this.$axios.get(`/api/camera/list`).then(
         (res) => {
           res = res.data;
           console.log(res)
           if (res.code == 200){
-            this.nowPlayVideoUrl = res.data[3].url;
+            this.nowPlayVideoUrl = res.data[2].url;
             console.log(this.nowPlayVideoUrl)
           } else {
             this.$message({
@@ -57,9 +59,9 @@ export default {
         }
       );
       setTimeout(() =>{
-        this.initVideo(this.nowPlayVideoUrl)
+        this.initVideo()
       },200)
-    },
+    }
   }
 
 

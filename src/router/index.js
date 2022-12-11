@@ -71,9 +71,6 @@ export const constantRoutes = [
   {
     path: '/shigongweidang',
     component: Layout,
-    // redirect: '/example/table',
-    // name: 'Construction_WeiDang',
-    // meta: { title: '施工围挡', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'index',
@@ -85,7 +82,7 @@ export const constantRoutes = [
   },
 
   {
-    path: '/daoluyinghua',
+    path: '/wuliaofugai',
     component: Layout,
     children: [
       {

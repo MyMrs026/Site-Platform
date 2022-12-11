@@ -1,18 +1,17 @@
 <template>
   <div>
-    <Video></Video>
+    施工围挡检测
   </div>
 </template>
 
+
 <script>
-import Video from '@/components/Video/index'
 export default {
   name: 'index',
-
-
   components:{
-    Video
   }
+
+
 }
 </script>
 
