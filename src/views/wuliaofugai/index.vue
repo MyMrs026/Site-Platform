@@ -13,14 +13,17 @@ export default {
   },
   data() {
     return {
-      nowPlayVideoUrl: "http://60.222.243.35:83/openUrl/e71YUdG/live.m3u8"
+      nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000046$0/substream/2.m3u8"
     };
   },
+
   mounted() {
-    this.initVideo(this.nowPlayVideoUrl);
+    // this.initVideo(this.nowPlayVideoUrl);
+    this.init_data()
   },
+
   methods: {
-    initVideo(nowPlayVideoUrl) {
+    initVideo() {
       // 这些options属性也可直接设置在video标签上，见 muted
       let options = {
         autoplay: true, // 设置自动播放
@@ -28,7 +31,7 @@ export default {
         sources: [
           // 注意，如果是以option方式设置的src,是不能实现 换台的 (即使监听了nowPlayVideoUrl也没实现)
           {
-            src: nowPlayVideoUrl,
+            src: this.nowPlayVideoUrl,
             type: "application/x-mpegURL" // 告诉videojs,这是一个hls流
           }
         ]
@@ -38,6 +41,26 @@ export default {
         console.log("onPlayerReady 中的this指的是：", this); // 这里的this是指Player,是由Videojs创建出来的实例
         console.log(myPlyer === this); // 这里返回的是true
       });
+    },
+    init_data(){
+      this.$axios.get(`/api/camera/list`).then(
+        (res) => {
+          res = res.data;
+          console.log(res)
+          if (res.code == 200){
+            this.nowPlayVideoUrl = res.data[2].url;
+            console.log(this.nowPlayVideoUrl)
+          } else {
+            this.$message({
+              type:'error',
+              message:res.message
+            })
+          }
+        }
+      );
+      setTimeout(() =>{
+        this.initVideo()
+      },200)
     }
   }
 
