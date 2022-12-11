@@ -14,7 +14,7 @@ export default {
 
   data() {
     return {
-      nowPlayVideoUrl: ""
+      nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000069$0/substream/2.m3u8"
     };
   },
   mounted() {
@@ -41,7 +41,7 @@ export default {
       });
     },
     getUrl(){
-      this.$axios.get(`http://60.222.243.227:7086/live/cameraid/1000069$0/substream/2.m3u8`).then(
+      this.$axios.get(`/api/camera/getBallCamera`).then(
         (res) => {
           res = res.data.data;
           console.log(res)
