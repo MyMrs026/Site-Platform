@@ -1,6 +1,6 @@
 <template>
   <div class="test-videojs">
-    <video id="videoPlayer" class="video-js" muted="muted"></video>
+    <video id="videoPlayer" width="300" height="150"  class="video-js" muted="muted" preload="auto"></video>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
 
   data() {
     return {
+      //http://60.222.243.227:7086/live/cameraid/1000069$0/substream/2.m3u8
       nowPlayVideoUrl: ""
     };
   },
@@ -41,12 +42,12 @@ export default {
       });
     },
     getUrl(){
-      this.$axios.get(`/api/camera/getBallCamera`).then(
+      this.$axios.get(`/api/camera/list`).then(
         (res) => {
-          res = res.data.data;
+          res = res.data;
           console.log(res)
-          if (res.code == 0){
-            this.nowPlayVideoUrl = res.data.url;
+          if (res.code == 200){
+            this.nowPlayVideoUrl = res.data[0].url;
             console.log(this.nowPlayVideoUrl)
           } else {
             this.$message({
