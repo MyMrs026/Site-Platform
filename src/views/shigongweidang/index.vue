@@ -1,20 +1,18 @@
 <template>
   <div>
-    施工围挡检测
-    <hls></hls>
+    <Video></Video>
   </div>
 </template>
 
-
 <script>
-import hls from '@/components/hls/hls'
+import Video from '@/components/Video/index'
 export default {
   name: 'index',
+
+
   components:{
-    hls
+    Video
   }
-
-
 }
 </script>
 

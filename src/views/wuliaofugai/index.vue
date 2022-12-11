@@ -13,11 +13,12 @@ export default {
   },
   data() {
     return {
-      nowPlayVideoUrl: "http://60.222.243.35:83/openUrl/e71YUdG/live.m3u8"
+      nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000009$0/substream/2.m3u8"
     };
   },
   mounted() {
-    this.initVideo(this.nowPlayVideoUrl);
+    // this.initVideo(this.nowPlayVideoUrl);
+    this.getUrl()
   },
   methods: {
     initVideo(nowPlayVideoUrl) {
@@ -38,7 +39,27 @@ export default {
         console.log("onPlayerReady 中的this指的是：", this); // 这里的this是指Player,是由Videojs创建出来的实例
         console.log(myPlyer === this); // 这里返回的是true
       });
-    }
+    },
+    getUrl(){
+      this.$axios.get(`/api/camera/list`).then(
+        (res) => {
+          res = res.data;
+          console.log(res)
+          if (res.code == 200){
+            this.nowPlayVideoUrl = res.data[3].url;
+            console.log(this.nowPlayVideoUrl)
+          } else {
+            this.$message({
+              type:'error',
+              message:res.message
+            })
+          }
+        }
+      );
+      setTimeout(() =>{
+        this.initVideo(this.nowPlayVideoUrl)
+      },200)
+    },
   }
 
 
