@@ -1,29 +1,28 @@
 <template>
   <div class="test-videojs">
-    <video id="videoPlayer" class="video-js" muted></video>
+    <video id="videoPlayer" width="300" height="150"  class="video-js" muted="muted" preload="auto"></video>
   </div>
 </template>
 
 <script>
-import Videojs from "video.js"; // 引入Videojs
+//videojs-flash必须要放在vue-video-player的后面
+import 'video.js/dist/video-js.css'
+import 'videojs-flash'
+import Videojs from 'video.js'
 export default {
-  name: 'wuliaofugai',
+  name: 'hls',
 
-  components:{
-  },
   data() {
     return {
-      nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000046$0/substream/2.m3u8"
+      //http://60.222.243.227:7086/live/cameraid/1000069$0/substream/2.m3u8
+      nowPlayVideoUrl: ""
     };
   },
-
   mounted() {
-    // this.initVideo(this.nowPlayVideoUrl);
-    this.init_data()
+    this.getUrl();
   },
-
   methods: {
-    initVideo() {
+    initVideo(nowPlayVideoUrl) {
       // 这些options属性也可直接设置在video标签上，见 muted
       let options = {
         autoplay: true, // 设置自动播放
@@ -31,7 +30,7 @@ export default {
         sources: [
           // 注意，如果是以option方式设置的src,是不能实现 换台的 (即使监听了nowPlayVideoUrl也没实现)
           {
-            src: this.nowPlayVideoUrl,
+            src: nowPlayVideoUrl,
             type: "application/x-mpegURL" // 告诉videojs,这是一个hls流
           }
         ]
@@ -42,13 +41,13 @@ export default {
         console.log(myPlyer === this); // 这里返回的是true
       });
     },
-    init_data(){
+    getUrl(){
       this.$axios.get(`/api/camera/list`).then(
         (res) => {
           res = res.data;
           console.log(res)
           if (res.code == 200){
-            this.nowPlayVideoUrl = res.data[2].url;
+            this.nowPlayVideoUrl = res.data[0].url;
             console.log(this.nowPlayVideoUrl)
           } else {
             this.$message({
@@ -59,9 +58,11 @@ export default {
         }
       );
       setTimeout(() =>{
-        this.initVideo()
+        this.initVideo(this.nowPlayVideoUrl)
       },200)
-    }
+    },
+
+
   }
 
 
@@ -69,11 +70,5 @@ export default {
 </script>
 
 <style scoped>
-
-#videoPlayer {
-  width: 500px;
-  height: 300px;
-  margin: 50px auto;
-}
 
 </style>

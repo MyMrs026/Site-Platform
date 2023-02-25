@@ -3,7 +3,7 @@
 
     <div class="cell-player">
       <div :class="cellClass(i)" v-for = "i in cellCount" :key="i">
-        <Video></Video>
+        <hls></hls>
       </div>
 
     </div>
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import Video from '@/components/Video/index'
+import hls from '@/components/hls/hls'
 
 export default {
   name: 'index',
   components: {
-    Video
+    hls
   },
   data() {
     return {
@@ -43,7 +43,6 @@ export default {
           case 4:
             return ['cell-player-4']
           case 6:
-
             return ['cell-player-6']
           case 9:
             return ['cell-player-9']
@@ -67,37 +66,47 @@ export default {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 0 40px;
+  border: 1px solid #ddd;
 }
 .cell-player-4 {
-  height: 50% !important;
+  /*height: 50% !important;*/
+  width: 50%;
   box-sizing: border-box;
+  justify-content: space-around;
+  border: 1px solid #ddd;
 }
 
 .cell-player-1 {
   width: 100%;
   box-sizing: border-box;
+  border: 1px solid #ddd;
 }
 
 .cell-player-6 {
   width: 33.33%;
   height: 33.33% !important;
   box-sizing: border-box;
-  justify-content: flex-start;
+  justify-content: space-around;
   padding: 0 30px;
   z-index: 2;
+  border: 1px solid #ddd;
 }
 .cell-player-9 {
   width: 33.33%;
   height: 33.33% !important;
   box-sizing: border-box;
   padding: 0 80px !important;
+  justify-content: space-around;
+  border: 1px solid #ddd;
 }
 .cell-player-16 {
   width: 25%;
   height: 25% !important;
   box-sizing: border-box;
+  justify-content: space-around;
+  border: 2px solid #ddd;
 }
 .cell {
   display: flex;

@@ -1,18 +1,22 @@
 <template>
   <div class="dashboard-container">
     <el-container>
-      <el-header height="130px">
-        <div class="title-text">智慧工地视频监管平台</div>
-        <div class="weather">
-          <div class="dashboard-subtitle">日期: {{getCurrentTime()}}</div>
-          <div class="dashboard-subtitle">所在城市: {{weather.city}}  今日天气:{{weather.wea}}</div>
+      <el-header height="100px">
+        <div id="main" style="height:100px;">
+          <div  id="left" style="float:left ; width:84%; height:100%;" class="title-text">智慧工地视频监管平台</div>
+          <div id="right" style="float:left ; width:16%; height:100%;" class="weather">
+            <div class="dashboard-subtitle">日期: {{getCurrentTime()}}</div>
+            <div class="dashboard-subtitle2">所在城市: {{weather.city}}</div>
+            <div class="dashboard-subtitle2">今日天气:{{weather.wea}}</div>
+          </div>
         </div>
       </el-header>
+
       <el-main>
         <!-- 中间部分的代码，分为左中右-->
         <div class="center">
           <div class="center-left">
-            <p>工地情况统计:</p>
+            <p style="font-weight: bold">工地情况统计:</p>
             <el-radio-group v-model="radio">
               <el-radio :label="1">处置类别</el-radio>
               <el-radio :label="2">状态</el-radio>
@@ -54,21 +58,21 @@
           </div>
           <div class="center-middle">
             <div class="center-GIS">
-              <p>GIS地图</p>
+              <p style="font-weight: bold">GIS地图</p>
               <p>工地视频信号接入</p>
-<!--              <my-map></my-map>-->
+              <!--              <my-map></my-map>-->
               <BaiduMap></BaiduMap>
             </div>
             <div class="tucengqiehuan">
-<!--              <p>图层切换</p>-->
-<!--              <div>-->
-<!--                <el-radio v-model="ditu" label="1">卫星图</el-radio>-->
-<!--                <el-radio v-model="ditu" label="2">路网图</el-radio>-->
-<!--              </div>-->
+              <!--              <p>图层切换</p>-->
+              <!--              <div>-->
+              <!--                <el-radio v-model="ditu" label="1">卫星图</el-radio>-->
+              <!--                <el-radio v-model="ditu" label="2">路网图</el-radio>-->
+              <!--              </div>-->
             </div>
           </div>
           <div class="center-right">
-            <p>请输入工地名称:</p>
+            <p style="font-weight: bold">请输入工地名称:</p>
             <div class="gongdisousuo">
               <el-input
                 placeholder="请输入内容"
@@ -85,7 +89,7 @@
         <div class="bottom">
           <!-- 左边是消息通知-->
           <div class="bottom-left">
-            <p>消息通知</p>
+            <p style="font-weight: bold">消息通知</p>
             <el-table
               :data="tableData"
               stripe
@@ -111,7 +115,7 @@
           <!-- 右边是指标趋势-->
           <!-- TODO 1期先使用多简单的文字，2期考虑使用echart折线图来可视化数据-->
           <div class="bottom-right">
-            <p>工地指标情况趋势</p>
+            <p style="font-weight: bold">工地指标情况趋势</p>
             1期先使用多简单的文字，2期考虑使用echart折线图来可视化数据
           </div>
         </div>
@@ -133,18 +137,18 @@ export default {
       weather:'',
       options: [
         {
-        value: '选项1',
-        label: '类别1'
-      }, {
-        value: '选项2',
-        label: '类别2'
-      }, {
-        value: '选项3',
-        label: '类别3'
-      }, {
-        value: '选项4',
-        label: '类别4'
-      }],
+          value: '选项1',
+          label: '类别1'
+        }, {
+          value: '选项2',
+          label: '类别2'
+        }, {
+          value: '选项3',
+          label: '类别3'
+        }, {
+          value: '选项4',
+          label: '类别4'
+        }],
       value: '',
       isvisable: true,
       radio: 1,
@@ -210,8 +214,8 @@ export default {
         )
         .then(res => {
           // let datas = res.data.data[0];//下标为0即表示当天天气数据
-           console.log(res.data);
-           //console.log(res.data.city);
+          console.log(res.data);
+          //console.log(res.data.city);
           this.weather = res.data
         })
         .catch(err => {
@@ -231,30 +235,41 @@ export default {
     text-align: center;
   }
   &-subtitle {
-    font-size: 20px;
-    line-height: 30px;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 25px;
     text-align: right;
+    font-weight: bold;
+  }
+  &-subtitle2 {
+    font-size: 15px;
+    line-height: 25px;
+    text-align: right;
+    font-weight: bold;
   }
 }
 
 .el-header{
-  background-color: #B3C0D1;
+  background-color: #ffffe0;
   color: #333;
   text-align: center;
   line-height: 60px;
   width: 100%;
 }
 .title-text {
-  color: white;
+  font-size: 30px;
+  color: #807e79;
   font-weight: bold;
   width: 500px;
   margin: auto;
-  background-color: rgb(48,65,86);
+  background-color: #ffffe0;
   border-radius: 0 0 10px 10px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .el-main {
-  background-color: white;
+  background-color: #ffffe0;
   color: #333;
   text-align: center;
   line-height: 20px !important;
@@ -272,7 +287,7 @@ export default {
   width: 24%;
   padding-left: 10px;
   //border: 2px solid black;
-  background-color: #E9EEF3;
+  background-color: #ffffff;
   border-radius: 10px;
 }
 
@@ -285,7 +300,7 @@ export default {
   width: 50%;
   padding-left: 10px;
   position: relative;
-  background-color: #E9EEF3;
+  background-color: #ffffff;
   border-radius: 10px;
 }
 
@@ -298,8 +313,9 @@ export default {
 .center .center-right{
   width: 24%;
   padding-left: 10px;
-  background-color: #E9EEF3;
+  background-color: #ffffff;
   border-radius: 10px;
+  line-height: 24px;
 }
 
 .center .center-right .gongdisousuo{
@@ -320,14 +336,14 @@ export default {
   width: 48%;
   //border: 3px solid lavenderblush;
   padding-left: 10px;
-  background-color: #E9EEF3;
+  background-color: #AED5C1;
   border-radius: 10px;
 }
 
 .bottom .bottom-right{
   width: 48%;
   padding-left: 10px;
-  background-color: #E9EEF3;
+  background-color: #ffffff;
   border-radius: 10px;
 }
 

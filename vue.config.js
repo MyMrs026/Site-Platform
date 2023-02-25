@@ -39,7 +39,7 @@ module.exports = {
     // 代理请求
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:8877',
         changeOrigin: true,
         pathRewrite: { '^/api': '' }
       }
