@@ -31,7 +31,7 @@ export default {
         sources: [
           // 注意，如果是以option方式设置的src,是不能实现 换台的 (即使监听了nowPlayVideoUrl也没实现)
           {
-            src: nowPlayVideoUrl,
+            src: this.nowPlayVideoUrl,
             type: "application/x-mpegURL" // 告诉videojs,这是一个hls流
           }
         ]
