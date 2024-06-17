@@ -62,8 +62,8 @@ export const constantRoutes = [
       {
         path: 'index',
         name: 'allvideo',
-        component: () => import('@/views/allvideo/index'),
-        meta: { title: '监控选择', icon: 'el-icon-video-camera-solid' }
+        component: () => import('@/views/allvideo/index.vue'),
+        meta: { title: '监控选择', icon: 'table' }
       },
     ]
   },
@@ -74,9 +74,22 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        name: 'Table',
+        name: 'shigongweidang',
         component: () => import('@/views/shigongweidang/index'),
         meta: { title: '施工围挡检测', icon: 'table' }
+      },
+    ]
+  },
+
+  {
+    path: '/daoluyinghua',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'daoluyinghua',
+        component: () => import('@/views/daoluyinghua/index'),
+        meta: { title: '道路硬化', icon: 'table' }
       },
     ]
   },
@@ -101,7 +114,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'shifazuoye',
         component: () => import('@/views/shifazuoye/index'),
-        meta: { title: '现场湿法作业', icon: 'el-icon-stopwatch' }
+        meta: { title: '现场湿法作业', icon: 'form' }
       }
     ]
   },
@@ -118,30 +131,30 @@ export const constantRoutes = [
     ]
   },
 
-  {
-    path: '/mibiyunshu',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'mibiyunshu',
-        component: () => import('@/views/mibiyunshu/index'),
-        meta: { title: '车辆密闭运输', icon: 'form' }
-      }
-    ]
-  },
-  {
-    path: '/yangchenjiance',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'yangchenjiance',
-        component: () => import('@/views/yangchenjiance/index'),
-        meta: { title: '扬尘在线监测', icon: 'form' }
-      }
-    ]
-  },
+  // {
+  //   path: '/mibiyunshu',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'mibiyunshu',
+  //       component: () => import('@/views/mibiyunshu/index'),
+  //       meta: { title: '车辆密闭运输', icon: 'form' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/yangchenjiance',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'yangchenjiance',
+  //       component: () => import('@/views/yangchenjiance/index'),
+  //       meta: { title: '扬尘在线监测', icon: 'form' }
+  //     }
+  //   ]
+  // },
   {
     path: '/videomanage',
     component: Layout,
@@ -151,17 +164,6 @@ export const constantRoutes = [
         name: 'videomanage',
         component: () => import('@/views/video/index.vue'),
         meta: { title: '监控视频管理', icon: 'el-icon-s-platform' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'http://www.sxmtwcy.com/',
-        meta: { title: '物测院官网', icon: 'link' }
       }
     ]
   },

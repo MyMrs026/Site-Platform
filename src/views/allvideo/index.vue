@@ -1,117 +1,112 @@
 <template>
-  <div class="cell">
-
-    <div class="cell-player">
-      <div :class="cellClass(i)" v-for = "i in cellCount" :key="i">
-        <hls></hls>
-      </div>
-
+  <div>
+    <!-- 添加按钮组，用于切换视频个数 -->
+    <div>
+      <button @click="showVideos(9)">显示前9个视频</button>
+      <button @click="showVideos(6)">显示前6个视频</button>
+      <button @click="showVideos(4)">显示前4个视频</button>
     </div>
-    <div class="cell-tool">
-      <div class="bk-button-group">
-        <el-button @click="cellCount = 1" size="small">1</el-button>
-        <el-button @click="cellCount = 4" size="small">4</el-button>
-        <el-button @click="cellCount = 6" size="small">6</el-button>
-        <el-button @click="cellCount = 9" size="small">9</el-button>
-        <el-button @click="cellCount = 16" size="small">16</el-button>
-      </div>
+
+    <!-- 使用v-for循环创建多个视频元素 -->
+    <div
+      v-for="(url, index) in displayedVideos"
+      :key="index"
+      class="video-container"
+    >
+      <video :id="'myVideo_' + index" class="video-js" muted>
+        <source :src="url" controls autoplay type="application/x-mpegURL" />
+      </video>
     </div>
   </div>
 </template>
 
 <script>
-import hls from '@/components/hls/hls'
+import videojs from "video.js";
+import "video.js/dist/video-js.css";
 
 export default {
-  name: 'index',
-  components: {
-    hls
-  },
+  name: "index",
   data() {
     return {
-
-      cellCount: 1
-    }
+      videoUrls: [
+        "http://60.222.243.227:7086/live/cameraid/1000434%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000444%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000437%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000438%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000439%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000440%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000441%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000442%240/substream/1.m3u8",
+        // 添加更多视频地址...
+      ],
+      displayedVideos: [
+        "http://60.222.243.227:7086/live/cameraid/1000434%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000444%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000437%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000434%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000444%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000437%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
+      ],
+      videosPerRow: 3, // 默认每行显示的视频数量
+    };
   },
-  methods: {},
   computed: {
-    cellClass() {
-      return function (index) {
-        switch (this.cellCount) {
-          case 1:
-            return ['cell-player-1']
-          case 4:
-            return ['cell-player-4']
-          case 6:
-            return ['cell-player-6']
-          case 9:
-            return ['cell-player-9']
-          case 16:
-            return ['cell-player-16']
-          default:
-            break;
+    videoRows() {
+      const rows = [];
+      for (let i = 0; i < this.displayedVideos.length; i += this.videosPerRow) {
+        rows.push(this.displayedVideos.slice(i, i + this.videosPerRow));
+      }
+      return rows;
+    },
+  },
+  methods: {
+    initVideo() {
+      this.displayedVideos.forEach((url, index) => {
+        let videoId = "myVideo_" + index;
+
+        if (videojs.getPlayers()[videoId]) {
+          videojs.getPlayers()[videoId].dispose();
         }
+
+        let myPlayer = videojs(
+          videoId,
+          {
+            controls: true,
+            autoplay: true,
+            preload: "auto",
+            width: "400px",
+            height: "200px",
+          },
+          function onPlayerReady() {
+            myPlayer.on("error", function () {
+              console.error("视频加载失败", myPlayer.error());
+            });
+          }
+        );
+      });
+    },
+    showVideos(count) {
+      this.displayedVideos = this.videoUrls.slice(0, count);
+      // 根据显示的视频数量动态调整每行的视频数量
+      if (count === 4) {
+        this.videosPerRow = 2;
+      } else {
+        this.videosPerRow = 3;
       }
     },
   },
-}
+  mounted() {
+    this.initVideo();
+  },
+};
 </script>
-<style>
-.cell-tool {
-  height: 40px;
-  line-height: 30px;
-  padding: 0 7px;
-}
-.cell-player {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 0 40px;
-  border: 1px solid #ddd;
-}
-.cell-player-4 {
-  /*height: 50% !important;*/
-  width: 50%;
-  box-sizing: border-box;
-  justify-content: space-around;
-  border: 1px solid #ddd;
-}
 
-.cell-player-1 {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
+<style scoped>
+.video-container {
+  margin-bottom: 20px;
 }
-
-.cell-player-6 {
-  width: 33.33%;
-  height: 33.33% !important;
-  box-sizing: border-box;
-  justify-content: space-around;
-  padding: 0 30px;
-  z-index: 2;
-  border: 1px solid #ddd;
-}
-.cell-player-9 {
-  width: 33.33%;
-  height: 33.33% !important;
-  box-sizing: border-box;
-  padding: 0 80px !important;
-  justify-content: space-around;
-  border: 1px solid #ddd;
-}
-.cell-player-16 {
-  width: 25%;
-  height: 25% !important;
-  box-sizing: border-box;
-  justify-content: space-around;
-  border: 2px solid #ddd;
-}
-.cell {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 </style>

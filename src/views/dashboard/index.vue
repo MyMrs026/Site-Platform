@@ -210,7 +210,7 @@ export default {
     getWeather() {
       this.$axios
         .get(
-          "https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=23718542 &appsecret=5Z6SpskU"//appid：23718542  appsecret：5Z6SpskU
+          "https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=23718542&appsecret=5Z6SpskU"//appid：23718542  appsecret：5Z6SpskU
         )
         .then(res => {
           // let datas = res.data.data[0];//下标为0即表示当天天气数据
