@@ -5,7 +5,7 @@
 
 ```bash
 # 克隆项目
-git clone https://gitee.com/ahao0579/Site-platform.git
+git clone https://github.com/MyMrs026/Site-Platform.git
 
 # 进入项目目录
 cd vue-admin-template
