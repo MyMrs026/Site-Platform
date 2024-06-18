@@ -175,7 +175,7 @@ export default {
       ],
 
       video_url:
-        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000394%240/substream/1.m3u8",
       video_url2:
         "http://60.222.243.227:7086/live/cameraid/1000434%240/substream/1.m3u8",
       video_url3:

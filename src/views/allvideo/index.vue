@@ -6,16 +6,17 @@
       <button @click="showVideos(6)">显示前6个视频</button>
       <button @click="showVideos(4)">显示前4个视频</button>
     </div>
-
     <!-- 使用v-for循环创建多个视频元素 -->
-    <div
-      v-for="(url, index) in displayedVideos"
-      :key="index"
-      class="video-container"
-    >
-      <video :id="'myVideo_' + index" class="video-js" muted>
-        <source :src="url" controls autoplay type="application/x-mpegURL" />
-      </video>
+    <div v-for="(row, rowIndex) in videoRows" :key="rowIndex" class="video-row">
+      <div v-for="(url, index) in row" :key="index" class="video-container">
+        <video
+          :id="'myVideo_' + (rowIndex * videosPerRow + index)"
+          class="video-js"
+          muted
+        >
+          <source :src="url" controls autoplay type="application/x-mpegURL" />
+        </video>
+      </div>
     </div>
   </div>
 </template>
@@ -23,33 +24,31 @@
 <script>
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
-
 export default {
   name: "index",
   data() {
     return {
       videoUrls: [
         "http://60.222.243.227:7086/live/cameraid/1000434%240/substream/1.m3u8",
-        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000394%240/substream/1.m3u8",
         "http://60.222.243.227:7086/live/cameraid/1000444%240/substream/1.m3u8",
         "http://60.222.243.227:7086/live/cameraid/1000437%240/substream/1.m3u8",
         "http://60.222.243.227:7086/live/cameraid/1000438%240/substream/1.m3u8",
-        "http://60.222.243.227:7086/live/cameraid/1000439%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000365%240/substream/1.m3u8",
         "http://60.222.243.227:7086/live/cameraid/1000440%240/substream/1.m3u8",
         "http://60.222.243.227:7086/live/cameraid/1000441%240/substream/1.m3u8",
         "http://60.222.243.227:7086/live/cameraid/1000442%240/substream/1.m3u8",
-        // 添加更多视频地址...
       ],
       displayedVideos: [
         "http://60.222.243.227:7086/live/cameraid/1000434%240/substream/1.m3u8",
-        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000394%240/substream/1.m3u8",
         "http://60.222.243.227:7086/live/cameraid/1000444%240/substream/1.m3u8",
         "http://60.222.243.227:7086/live/cameraid/1000437%240/substream/1.m3u8",
-        "http://60.222.243.227:7086/live/cameraid/1000434%240/substream/1.m3u8",
-        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
-        "http://60.222.243.227:7086/live/cameraid/1000444%240/substream/1.m3u8",
-        "http://60.222.243.227:7086/live/cameraid/1000437%240/substream/1.m3u8",
-        "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000438%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000365%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000440%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000441%240/substream/1.m3u8",
+        "http://60.222.243.227:7086/live/cameraid/1000442%240/substream/1.m3u8",
       ],
       videosPerRow: 3, // 默认每行显示的视频数量
     };

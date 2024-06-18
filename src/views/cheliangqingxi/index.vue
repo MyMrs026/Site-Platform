@@ -14,7 +14,7 @@ export default {
   name: 'index',
   data() {
     return {
-      video_url: "http://60.222.243.227:7086/live/cameraid/1000435%240/substream/1.m3u8"
+      video_url: "http://60.222.243.227:7086/live/cameraid/1000394%240/substream/1.m3u8"
     }
   },
   methods: {
