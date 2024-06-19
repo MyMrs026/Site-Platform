@@ -15,7 +15,7 @@
   
     data() {
       return {
-        flaskAppUrl: "http://172.18.2.60:5000/video_feed",
+        flaskAppUrl: "http://172.18.2.60:5001/video_start",
         nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000434%240/substream/1.m3u8",
         selectedFile: null,
         // 其他数据
@@ -64,14 +64,14 @@
   <style scoped>
   
   #videoPlayer {
-    width: 500px;  /* 视频播放器宽度 */
-    height: 300px;  /* 视频播放器高度 */
+    width: 1000px;  /* 视频播放器宽度 */
+    height: 800px;  /* 视频播放器高度 */
     margin: 50px auto;  /* 居中显示 */
   }
   
   .iframe-container iframe {
-    width: 640px;  /* iframe 宽度与视频播放器一致 */
-    height: 360px;  /* iframe 高度与视频播放器一致 */
+    width: 1000px;  /* iframe 宽度与视频播放器一致 */
+    height: 800px;  /* iframe 高度与视频播放器一致 */
     border: none;
     margin: auto;  /* 居中显示 */
   }
