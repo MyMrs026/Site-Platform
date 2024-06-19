@@ -70,8 +70,8 @@
   }
   
   .iframe-container iframe {
-    width: 640px;  /* iframe 宽度与视频播放器一致 */
-    height: 360px;  /* iframe 高度与视频播放器一致 */
+    /* iframe 宽度与视频播放器一致 */
+    /* iframe 高度与视频播放器一致 */
     border: none;
     margin: auto;  /* 居中显示 */
   }
