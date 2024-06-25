@@ -7,10 +7,10 @@
 
 <script>
 import Sidebar from "../caseModule/childComponent/Sidebar.vue";
-import Zhuanfa from "../caseModule/childComponent/main_zhuanfa.vue";
-import Chuzhi from "../caseModule/childComponent/main_chuzhi.vue";
-import Hecha from "../caseModule/childComponent/main_hecha.vue";
-import Cundang from "../caseModule/childComponent/main_cundang.vue";
+import Zhuanfa from "./childComponent/zhuanfa/main_zhuanfa.vue";
+import Chuzhi from "./childComponent/chuzhi/main_chuzhi.vue";
+import Hecha from "./childComponent/hecha/main_hecha.vue";
+import Cundang from "./childComponent/cundang/main_cundang.vue";
 export default {
   name: "index",
   data() {

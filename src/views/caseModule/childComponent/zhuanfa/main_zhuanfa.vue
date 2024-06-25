@@ -39,13 +39,19 @@
         </el-form-item>
       </el-form>
     </div>
-    <div class="">
-
+    <div class="case-show">
+      <div class="row" v-for="(rowItems, rowIndex) in rows" :key="rowIndex">
+        <case-item v-for="(item, itemIndex) in rowItems" :key="itemIndex">
+          <!-- 这里是每个 case-item 的内容 -->
+           {{ item }}
+        </case-item>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import caseItem from "./caseItem.vue";
 export default {
   data() {
     return {
@@ -104,11 +110,37 @@ export default {
           label: "车辆清洗",
         },
       ],
+      itemCount: 40, //总共有40个视频
     };
   },
   methods: {
     onSubmit() {
       console.log("submit!");
+    },
+  },
+  components: {
+    caseItem,
+  },
+  computed: {
+    rows() {
+      const rows = [];
+      const itemsPerRow = 4; // 每行展示4个视频
+      const totalRows = Math.ceil(this.itemCount / itemsPerRow);
+
+      for (let i = 0; i < totalRows; i++) {
+        let row = [];
+        for (let j = 0; j < itemsPerRow; j++) {
+          let index = i * itemsPerRow + j;
+          if (index < this.itemCount) {
+            row.push(`视频 ${index + 1}`); // 替换为你的视频数据
+          } else {
+            break;
+          }
+        }
+        rows.push(row);
+      }
+
+      return rows;
     },
   },
 };
