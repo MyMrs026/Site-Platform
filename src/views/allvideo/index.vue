@@ -108,4 +108,8 @@ export default {
 .video-container {
   margin-bottom: 20px;
 }
+.video-row {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

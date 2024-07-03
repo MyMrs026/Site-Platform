@@ -7,12 +7,12 @@
       </div>
     </div>
   </template>
-  
+
   <script>
   import Videojs from "video.js"; // 引入Videojs
   export default {  // 只有一个 export default
     name: 'wuliaofugai',
-  
+
     data() {
       return {
         flaskAppUrl: "http://172.18.2.60:5005/video_feed",
@@ -21,11 +21,11 @@
         // 其他数据
       };
     },
-  
+
     mounted() {
       this.init_data();
     },
-  
+
     methods: {
       initVideo() {
         let options = {
@@ -56,31 +56,31 @@
         },200)
       }
     }
-  
-  
+
+
   }
   </script>
-  
+
   <style scoped>
-  
+
   #videoPlayer {
     width: 500px;  /* 视频播放器宽度 */
     height: 300px;  /* 视频播放器高度 */
     margin: 50px auto;  /* 居中显示 */
   }
-  
+
   .iframe-container iframe {
     /* iframe 宽度与视频播放器一致 */
     /* iframe 高度与视频播放器一致 */
     border: none;
     margin: auto;  /* 居中显示 */
   }
-  
+
   .iframe-container {
     width: 100%;  /* iframe 容器宽度设置为 100% */
     display: flex;  /* 使用 Flexbox 进行布局 */
     justify-content: center;  /* 水平居中 */
     align-items: center;  /* 垂直居中 */
   }
-  
+
   </style>
