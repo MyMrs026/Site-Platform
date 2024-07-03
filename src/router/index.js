@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'dashboard' }
     }]
   },
 
@@ -106,6 +106,7 @@ export const constantRoutes = [
       }
     ]
   },
+
   {
     path: '/shifazuoye',
     component: Layout,
@@ -118,6 +119,7 @@ export const constantRoutes = [
       }
     ]
   },
+
   {
     path: '/cheliangqingxi',
     component: Layout,
@@ -131,30 +133,6 @@ export const constantRoutes = [
     ]
   },
 
-  // {
-  //   path: '/mibiyunshu',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'mibiyunshu',
-  //       component: () => import('@/views/mibiyunshu/index'),
-  //       meta: { title: '车辆密闭运输', icon: 'form' }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/yangchenjiance',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'yangchenjiance',
-  //       component: () => import('@/views/yangchenjiance/index'),
-  //       meta: { title: '扬尘在线监测', icon: 'form' }
-  //     }
-  //   ]
-  // },
   {
     path: '/videomanage',
     component: Layout,
@@ -164,6 +142,19 @@ export const constantRoutes = [
         name: 'videomanage',
         component: () => import('@/views/video/index.vue'),
         meta: { title: '监控视频管理', icon: 'el-icon-s-platform' }
+      }
+    ]
+  },
+
+  {
+    path: '/caseModule',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'caseModule',
+        component: () => import('@/views/caseModule/index.vue'),
+        meta: { title: '案件处理模块', icon: 'el-icon-s-platform' }
       }
     ]
   },
