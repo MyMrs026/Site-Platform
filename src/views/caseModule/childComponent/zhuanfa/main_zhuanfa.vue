@@ -41,7 +41,7 @@
     </div>
     <div class="case-show">
       <div class="row" v-for="(rowItems, rowIndex) in rows" :key="rowIndex">
-        <case-item v-for="(item, itemIndex) in rowItems" :key="itemIndex">
+        <case-item class="col-md-3" v-for="(item, itemIndex) in rowItems" :key="itemIndex">
           <!-- 这里是每个 case-item 的内容 -->
            {{ item }}
         </case-item>
@@ -146,5 +146,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col-md-3 {
+  width: calc(25% - 15px);
+  margin: 0 7.5px 15px; /* 左右间距7.5px，底部间距15px */
+}
 </style>
