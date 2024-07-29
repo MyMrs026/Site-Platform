@@ -46,6 +46,9 @@ export default {
     Hecha,
     Cundang,
   },
+  created(){
+   
+  }
 };
 </script>
 

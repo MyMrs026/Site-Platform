@@ -40,8 +40,8 @@
       </el-form>
     </div>
     <div class="case-show">
-      <div class="row" v-for="(rowItems, rowIndex) in rows" :key="rowIndex">
-        <case-item class="col-md-3" v-for="(item, itemIndex) in rowItems" :key="itemIndex">
+      <div class="row" v-for="(item, index) in this.$store.state.eventItem" :key="index">
+        <case-item :eventItem="item" class="col-md-3">
           <!-- 这里是每个 case-item 的内容 -->
            {{ item }}
         </case-item>
