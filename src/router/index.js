@@ -68,6 +68,20 @@ export const constantRoutes = [
     ]
   },
 
+  //事件
+  {
+    path: '/caseModule',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'caseModule',
+        component: () => import('@/views/caseModule/index.vue'),
+        meta: { title: '案件处理模块', icon: 'el-icon-s-platform' }
+      }
+    ]
+  },
+
   {
     path: '/shigongweidang',
     component: Layout,
@@ -146,18 +160,7 @@ export const constantRoutes = [
     ]
   },
 
-  {
-    path: '/caseModule',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'caseModule',
-        component: () => import('@/views/caseModule/index.vue'),
-        meta: { title: '案件处理模块', icon: 'el-icon-s-platform' }
-      }
-    ]
-  },
+
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

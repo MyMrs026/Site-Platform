@@ -16,7 +16,7 @@
     data() {
       return {
         flaskAppUrl: "http://172.18.2.60:5008/video_start",
-        nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000440%240/substream/1.m3u8",
+        nowPlayVideoUrl: "http://60.222.243.227:7086/live/cameraid/1000456%240/substream/1.m3u8",
         selectedFile: null,
         // 其他数据
       };

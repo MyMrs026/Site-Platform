@@ -32,7 +32,7 @@
                 <span>案件数量</span>
               </div>
               <div
-                class="text item"
+                class="text-item"
                 style="display: flex; justify-content: space-between"
               >
                 <div>今日案件(件){{ todayCase }}</div>
@@ -41,34 +41,64 @@
             </el-card>
             <!-- 案件统计部分 -->
             <div class="case-statistic">
-              <el-tabs
-                v-model="activeName"
-                type="card"
-                @tab-click="handleClick"
-              >
+              <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane
-                  label="用户管理"
+                  label="今日案件"
                   name="first"
                   style="margin-top: 10px; line-height: 30px"
-                  >用户管理</el-tab-pane
                 >
+                  <div>总共(件) {{ todayCase }}</div>
+                  <div>案件类型TOP</div>
+                  <ul>
+                    <li>物料堆放检测异常</li>
+                  </ul>
+                  <div>案发位置TOP</div>
+                  <ul>
+                    <li>摄像头1</li>
+                    <li>摄像头2</li>
+                    <!-- <li>摄像头3</li>
+                    <li>摄像头4</li>
+                    <li>摄像头5</li> -->
+                  </ul>
+                </el-tab-pane>
+
                 <el-tab-pane
-                  label="配置管理"
+                  label="近7日"
                   name="second"
                   style="margin-top: 10px; line-height: 30px"
-                  >配置管理</el-tab-pane
+                >
+                  <div>总共(件) {{ sevenCase }}</div>
+                  <div>案件类型TOP</div>
+                  <ul>
+                    <li>物料堆放检测异常</li>
+                  </ul>
+                  <div>案发位置TOP</div>
+                  <ul>
+                    <li>摄像头1</li>
+                    <li>摄像头2</li>
+                    <!-- <li>摄像头3</li>
+                    <li>摄像头4</li>
+                    <li>摄像头5</li> -->
+                  </ul></el-tab-pane
                 >
                 <el-tab-pane
-                  label="角色管理"
+                  label="近1个月"
                   name="third"
                   style="margin-top: 10px; line-height: 30px"
-                  >角色管理</el-tab-pane
                 >
-                <el-tab-pane
-                  label="定时任务补偿"
-                  name="fourth"
-                  style="margin-top: 10px; line-height: 30px"
-                  >定时任务补偿</el-tab-pane
+                  <div>总共(件) {{ monthCase }}</div>
+                  <div>案件类型TOP</div>
+                  <ul>
+                    <li>物料堆放检测异常</li>
+                  </ul>
+                  <div>案发位置TOP</div>
+                  <ul>
+                    <li>摄像头1</li>
+                    <li>摄像头2</li>
+                    <!-- <li>摄像头3</li>
+                    <li>摄像头4</li>
+                    <li>摄像头5</li> -->
+                  </ul></el-tab-pane
                 >
               </el-tabs>
             </div>
@@ -189,8 +219,10 @@ export default {
         },
       ],
       activeName: "first",
-      todayCase: 0,
-      totalCase: 0,
+      todayCase: 3,
+      sevenCase: 26,
+      monthCase: 60,
+      totalCase: 1245,
     };
   },
   //mounted来异步执行weather
@@ -381,6 +413,10 @@ export default {
 }
 
 .box-card {
-  width: 480px;
+  width: 100%;
+  font-size: 16px;
+}
+.case-statistic {
+  font-size: 14px;
 }
 </style>
