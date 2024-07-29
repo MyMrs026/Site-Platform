@@ -1,14 +1,18 @@
 <template>
   <div class="case-item">
-    <el-image style="width: 230px; height: 150px" :src="src"></el-image>
+    <el-image style="width: 230px; height: 150px" :src="eventItem.eventPic"></el-image>
     <div class="case-title">
       <el-checkbox v-model="checked1" label="事件名称"></el-checkbox>
     </div>
 
     <div class="case-detailInform">
-      <p>事件编号:例2107191000020</p>
-      <p>事件发生时间:例2024-06-21</p>
-      <p>位置信息:如摄像头5</p>
+      <p>事件编号:{{eventItem.eventId}}</p>
+      <p>事件类别:{{eventItem.eventCategory}}</p>
+      <p>事件详情:{{eventItem.eventDetail}}</p>
+      <p>事件发生时间:{{eventItem.eventTime}}</p>
+      <p>工地名称:{{eventItem.eventSite}}</p>
+      <p>发生位置:{{eventItem.eventPlace}}</p>
+      <p>监控编号:{{eventItem.eventMonitor}}</p>
     </div>
     <div class="button-area">
       <el-button size="mini" @click="dialogZhuanfaVisible = true"
@@ -106,10 +110,16 @@ export default {
         },
       ],
       value_renyuan: "",
-      textarea_1:""
+      textarea_1: ""
     };
   },
-  created() {},
+  props:{
+    eventItem:Object,
+    required:true
+  },
+  created() {
+   
+  },
   mounted() {},
   methods: {},
   computed: {},
