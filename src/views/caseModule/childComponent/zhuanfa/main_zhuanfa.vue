@@ -40,10 +40,16 @@
       </el-form>
     </div>
     <div class="case-show">
-      <div class="row" v-for="(item, index) in this.$store.state.eventItem" :key="index">
-        <case-item :eventItem="item" class="col-md-3">
+      <div class="row" v-for="(row, rowIndex) in rows" :key="rowIndex">
+        <case-item
+          v-for="(item, index) in row"
+          :key="index"
+          :eventItem="item"
+          class="col-md-3"
+          @click="handleItemClick(item)"
+        >
           <!-- 这里是每个 case-item 的内容 -->
-           {{ item }}
+          {{ item.description }}
         </case-item>
       </div>
     </div>
@@ -125,22 +131,15 @@ export default {
     rows() {
       const rows = [];
       const itemsPerRow = 4; // 每行展示4个视频
-      const totalRows = Math.ceil(this.itemCount / itemsPerRow);
+      const eventItems = this.$store.state.eventItem;
+      const totalRows = Math.ceil(eventItems.length / itemsPerRow);
 
       for (let i = 0; i < totalRows; i++) {
-        let row = [];
-        for (let j = 0; j < itemsPerRow; j++) {
-          let index = i * itemsPerRow + j;
-          if (index < this.itemCount) {
-            row.push(`视频 ${index + 1}`); // 替换为你的视频数据
-          } else {
-            break;
-          }
-        }
-        rows.push(row);
+        rows.push(eventItems.slice(i * itemsPerRow, (i + 1) * itemsPerRow));
       }
 
       return rows;
+
     },
   },
 };
@@ -152,7 +151,9 @@ export default {
   flex-wrap: wrap;
 }
 .col-md-3 {
-  width: calc(25% - 15px);
-  margin: 0 7.5px 15px; /* 左右间距7.5px，底部间距15px */
+  margin: 7.5px; /* 调整间隙 */
+  background-color: #f0f0f0; /* 背景色方便调试 */
+  padding: 10px; /* 内边距方便调试 */
+  box-sizing: border-box;
 }
 </style>
